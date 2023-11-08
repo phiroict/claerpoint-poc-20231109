@@ -10,19 +10,12 @@ phases:
       - source $HOME/.cargo/env
   build:
     commands:
-      - cargo install --force cargo-audit
-      - cargo install --force cargo-outdated
-      - cargo install --force cargo-update
-      - cargo install --force cargo-semver-tool
-      - cargo audit --ignore RUSTSEC-2020-0071 && cargo update && cargo outdated
-
+      - cargo build --release
 artifacts:
   files:
-    - Cargo*
-    - src/*
+    - target/release/yt-parallel
     - templates/*
   discard-paths: "no"
-
 cache:
   paths:
     - $HOME/.cargo/registry/**/*

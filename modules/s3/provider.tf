@@ -5,6 +5,15 @@
 #Amazon Web Services, Inc. or Amazon Web Services EMEA SARL or both.
 
 provider "aws" {
+  region                  = "ap-southeast-2"
   alias  = "replication"
-  region = "us-east-2"
+}
+
+
+terraform {
+  backend "s3" {
+    bucket = "phiroict.site.terraform.state"
+    key = "clearpointpoc"
+    region = "ap-southeast-2"
+  }
 }
