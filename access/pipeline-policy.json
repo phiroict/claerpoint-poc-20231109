@@ -77,9 +77,19 @@
       "Effect": "Allow",
       "Action": [
         "s3:ListBucket",
-        "s3:ListAllMyBuckets"
+        "s3:ListAllMyBuckets",
+        "kms:Decrypt"
       ],
       "Resource": "arn:aws:s3:::clearpoint*"
+    },
+
+    {
+      "Sid": "DecryptBuckets",
+      "Effect": "Allow",
+      "Action": [
+        "kms:Decrypt"
+      ],
+      "Resource": "arn:aws:kms:ap-southeast-2:774492638540:key/eb607255-c5d6-460d-896a-da0cb482a96b"
     }
   ]
 }
