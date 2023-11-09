@@ -1,4 +1,41 @@
-# AWS CodePipeline CI/CD example
+# AWS CodePipeline CI/CD PoC 
+
+## Origin 
+This project has been derived from the [example project](https://github.com/aws-samples/aws-codepipeline-terraform-cicd-samples) from
+`aromal-amzn` and has been changed in the following ways: 
+- Fixed changes in S3 ACL defaults (ACLs are not longer allowed on S3)
+- Changed the buildspecs to compile and test an example rust project. 
+- Removed the KMS key generation to use the default one to save time. 
+
+## Purpose 
+This is an example project of how to setup a pipeline with IaC (Infrastructure as Code) and have a reference pipeline build and release an executable to S3
+The solution was timeboxed to 2 hours so it was decided to use an opensource solution to refactor to specs in stead of string from scratch.
+This project is free to use for any other user as it is a nice PoC how to provision pipelines quickly.
+The timebox would also mean that finetuning for security, performance, lifecycle management, and usability are omitted. They would play an important role in a real project. 
+
+
+## Outline 
+
+This contains of a terraform set of modules that generates the CodeCommit, CodeBuild and Pipeline on AWS.
+The test project is a test rust project that is based on one of my own [projects](https://github.com/phiroict/yt-parallel.git) the only purpose it to compile, test, validate and generate a deploy artefact. 
+
+### Software/Service stack 
+
+- aws-vault 
+  - Admin account assigned to the `home` aws-vault account
+- terraform 1.5.7
+- rust 1.73.0
+- AWS Admin account
+
+### Provision 
+
+The project is provisioned by: 
+```bash
+terraform init
+aws-vault exec home --no-session -- terraform apply -var-file=./examples/terraform.tfvars
+```
+
+# Original documentation project 
 Terraform is an infrastructure-as-code (IaC) tool that helps you create, update, and version your infrastructure in a secure and repeatable manner.
 
 The scope of this pattern is to provide a guide and ready to use terraform configurations to setup validation pipelines with end-to-end tests based on AWS CodePipeline, AWS CodeBuild, AWS CodeCommit and Terraform. 

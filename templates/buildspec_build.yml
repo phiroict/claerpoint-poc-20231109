@@ -15,6 +15,7 @@ artifacts:
   files:
     - target/release/yt-parallel
     - templates/*
+    - Cargo*
   discard-paths: "no"
 cache:
   paths:

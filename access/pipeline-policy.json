@@ -1,0 +1,66 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CodeCommitReadAccessToOneProject",
+      "Effect": "Allow",
+      "Action": [
+        "codecommit:Get*",
+        "codecommit:GitPull",
+        "codecommit:List*",
+        "codedeploy:ListApplications",
+        "codedeploy:ListDeployments"
+      ],
+      "Resource": [
+        "arn:aws:codecommit:ap-southeast-2:774492638540:yt-parallel",
+        "arn:aws:codedeploy:ap-southeast-2:774492638540:application:*",
+        "arn:aws:codedeploy:ap-southeast-2:774492638540:deploymentgroup:* "]
+    },
+    {
+      "Sid": "CodeBuildReadAccessToSpecificProjects",
+      "Effect": "Allow",
+      "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:BatchGetProjects",
+        "codebuild:ListBuildsForProject"
+      ],
+      "Resource": [
+        "arn:aws:codebuild:ap-southeast-2:774492638540:project/clearpoint-poc-build",
+        "arn:aws:codebuild:ap-southeast-2:774492638540:project/clearpoint-poc-test",
+        "arn:aws:codebuild:ap-southeast-2:774492638540:project/clearpoint-poc-artefact",
+        "arn:aws:codebuild:ap-southeast-2:774492638540:project/clearpoint-poc-validate"
+      ]
+    },
+    {
+      "Sid": "CodePipelineReadAccessToOnePipeline",
+      "Effect": "Allow",
+      "Action": [
+        "codepipeline:GetPipeline",
+        "codepipeline:GetPipelineExecution",
+        "codepipeline:GetPipelineState",
+        "codepipeline:ListPipelineExecutions",
+        "codepipeline:ListActionExecutions"
+      ],
+      "Resource": "arn:aws:codepipeline:ap-southeast-2:774492638540:clearpoint-poc-pipeline"
+    },
+    {
+      "Sid": "GeneralListAccess",
+      "Effect": "Allow",
+      "Action": [
+        "codecommit:ListRepositories",
+        "codebuild:ListProjects",
+        "codepipeline:ListPipelines"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ConsoleLoginAccess",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetAccountPasswordPolicy",
+        "iam:GetAccountSummary"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
