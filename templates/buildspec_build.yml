@@ -14,6 +14,7 @@ phases:
 artifacts:
   files:
     - target/release/yt-parallel
+    - src/*
     - templates/*
     - Cargo*
   discard-paths: "no"

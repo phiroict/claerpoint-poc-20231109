@@ -10,12 +10,11 @@ phases:
       - source $HOME/.cargo/env
   build:
     commands:
-      - cargo clean
+      - cargo build --release
 artifacts:
   files:
-    - templates/*
-    - src/*
-  discard-paths: "no"
+    - target/release/yt-parallel
+  discard-paths: "yes"
 cache:
   paths:
     - $HOME/.cargo/registry/**/*
