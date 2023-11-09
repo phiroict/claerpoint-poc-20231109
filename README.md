@@ -18,6 +18,23 @@ The timebox would also mean that finetuning for security, performance, lifecycle
 
 This contains of a terraform set of modules that generates the CodeCommit, CodeBuild and Pipeline on AWS.
 The test project is a test rust project that is based on one of my own [projects](https://github.com/phiroict/yt-parallel.git) the only purpose it to compile, test, validate and generate a deploy artefact. 
+The set consists of 
+- CodeCommit project: `yt-parallel`
+- CodeBuild projects: 
+  - `clearpoint-poc-build`
+  - `clearpoint-poc-test`
+  - `clearpoint-poc-artefact`
+  - `clearpoint-poc-validate`
+- Pipeline: `clearpoint-poc-pipeline`
+- An AIM user: `poc-user` on aws account  `774492638540`
+
+The pipeline will get the sourcecode from the CodeCommit project:
+- Check code in the validate stage
+- Test code in the test stage
+- Build code in the build stage
+- create the artefact in the artefact stage. 
+
+<font color=red>NOTE: The poc-user will provide read only access to the components only.</font> 
 
 ### Software/Service stack 
 
