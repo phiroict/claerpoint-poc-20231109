@@ -61,6 +61,25 @@
         "iam:GetAccountSummary"
       ],
       "Resource": "*"
+    },
+    {
+      "Sid": "PocPipelineAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:Get*"
+      ],
+      "Resource": "arn:aws:s3:::clearpoint-poc*/*/*/*"
+    },
+
+    {
+      "Sid": "ListBuckets",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:ListAllMyBuckets"
+      ],
+      "Resource": "arn:aws:s3:::clearpoint*"
     }
   ]
 }
