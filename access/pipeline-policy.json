@@ -77,8 +77,7 @@
       "Effect": "Allow",
       "Action": [
         "s3:ListBucket",
-        "s3:ListAllMyBuckets",
-        "kms:Decrypt"
+        "s3:ListAllMyBuckets"
       ],
       "Resource": "arn:aws:s3:::clearpoint*"
     },
