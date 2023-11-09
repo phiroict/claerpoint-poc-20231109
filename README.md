@@ -26,7 +26,9 @@ The set consists of
   - `clearpoint-poc-artefact`
   - `clearpoint-poc-validate`
 - Pipeline: `clearpoint-poc-pipeline`
-- An AIM user: `poc-user` on aws account  `774492638540`
+- An AIM user: `poc-user` on aws account  `774492638540`, these are defined in the `access` as a local state terraform project. 
+  - The script creates a user and applies a limited access policy to it.
+  - The policy allows access to the pipeline, the sourcecode and the generated artefacts.
 
 The pipeline will get the sourcecode from the CodeCommit project:
 - Check code in the validate stage
@@ -51,7 +53,14 @@ The project is provisioned by:
 terraform init
 aws-vault exec home --no-session -- terraform apply -var-file=./examples/terraform.tfvars
 ```
-
+Create the user: 
+```bash
+cd access
+terraform init
+aws-vault exec home --no-session -- terraform plan -out plan.plan
+aws-vault exec home --no-session -- terraform apply plan.plan
+```
+Note that you need the `--no-session` to be able to provision AIM users and policies as federated users that it normally generate when running aws-vault are not allowed to create users.  
 # Original documentation project 
 Terraform is an infrastructure-as-code (IaC) tool that helps you create, update, and version your infrastructure in a secure and repeatable manner.
 
